@@ -2,7 +2,34 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+const contacts = [
+    {
+        id:1,
+        name: "Friends",
+        type: "Group",
+        contacts: [
+            {id:2, name: "Udi", type: "Contact"},
+            {id:3, name: "Tommy", type: "Contact"},
+            {
+                id:6,
+                name: "Old Friends",
+                type: "Group",
+                contacts: [
+                    {id:7, name: "Itay", type: "Contact"},
+                ]
+            },
+        ]
+    },
+    {
+        id:4,
+        name: "Family",
+        type: "Group",
+        contacts: [
+            {id:5, name: "Roni", type: "Contact"},
+        ]
+    },
+    {id: 8, name: "Ori", type: "Contact"},
+];
+
+ReactDOM.render(<App contacts={contacts} />, document.getElementById('root'));
