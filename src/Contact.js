@@ -1,6 +1,6 @@
 import React from 'react';
-import './Contact.css';
+import './styles/contact.css';
 
 export default function (props) {
-    return <div className='Contact-main'>{props.item.name}</div>
+    return <div className='contact'>{props.item.name}</div>
 }

@@ -1,0 +1,9 @@
+.group-header {
+    cursor: pointer;
+    color: mediumseagreen;
+}
+
+.group-header:hover {
+    background: #add8e6;
+    color: #000;
+}
