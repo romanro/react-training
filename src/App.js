@@ -1,21 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Container, Row, Col, Card, CardHeader, CardBlock } from 'reactstrap';
 import './styles/app.css';
 import List from './List.js';
 
 class App extends Component {
-  static childContextTypes = {
-    addContact: PropTypes.func
-  }
-  getChildContext() {
-    const { addContact } = this.props;
-    return {addContact}
-  }
-
   render() {
     const { contacts } = this.props;
-
+    console.log(this.props)
     return (
       <Container>
         <Row>
@@ -34,4 +27,9 @@ class App extends Component {
   }
 }
 
-export default App;
+const connector = connect(function (state) {
+  return {
+    contacts: state.contacts
+  }
+})
+export default connector(App);

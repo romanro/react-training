@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Button, Form, FormGroup, Input } from 'reactstrap';
 import './styles/toolbox.css';
+import { ADD_CONTACT, RESET_CONTACTS } from './Actions'
 
 class Toolbox extends Component {
     constructor(props) {
@@ -11,12 +13,12 @@ class Toolbox extends Component {
         }
     }
 
-    static contextTypes = {
-        addContact: PropTypes.func
+    addContact(){
+        this.props.dispatch(ADD_CONTACT(this.state.contact, this.props.groupId))
     }
 
-    addContact(){
-        this.context.addContact(this.state.contact, this.props.groupId);
+    resetContacts() {
+        this.props.dispatch(RESET_CONTACTS)
     }
 
     onContactInputChange(e){
@@ -33,6 +35,8 @@ class Toolbox extends Component {
                         <Input size="sm" type="text" value={this.state.contact} onChange={this.onContactInputChange.bind(this)} placeholder="New contact" />
                     </FormGroup>
                     <Button size="sm" onClick={this.addContact.bind(this)}>Add Conatct</Button>
+                    <Button size="sm" onClick={this.resetContacts.bind(this)}>Reset</Button>
+
                 </Form>
             </div>
         )
@@ -40,4 +44,5 @@ class Toolbox extends Component {
 
 }
 
-export default Toolbox;
+const connector = connect()
+export default connector(Toolbox);

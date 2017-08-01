@@ -13,19 +13,9 @@ const renderSingle = function (item, index) {
 
 
 class List extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      items: this.props
-    }
-  }
-
-
   render() {
-    const { items } = this.state.items;
+    const { items } = this.props;
     const nodes = items.map(renderSingle);
-
-   // console.log(items)
 
     return (
       <div className='list'>
