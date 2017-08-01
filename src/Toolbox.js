@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Button, Form, FormGroup, Input } from 'reactstrap';
 import './styles/toolbox.css';
 
@@ -6,16 +7,22 @@ class Toolbox extends Component {
     constructor(props) {
         super(props)
         this.state = {
-        contact:''
+            contact:''
         }
     }
 
+    static contextTypes = {
+        addContact: PropTypes.func
+    }
+
     addContact(){
-        console.log("Add conatct");
+        this.context.addContact(this.state.contact, this.props.groupId);
     }
 
     onContactInputChange(e){
-        console.log("input changed " + e.target.value)
+        this.setState({
+            contact:e.target.value
+        })
     }
 
     render() {
@@ -23,15 +30,14 @@ class Toolbox extends Component {
             <div className='toolbox'>
                 <Form inline>
                     <FormGroup>
-                        <Input size="sm" type="text" onChange={this.onContactInputChange} placeholder="New contact" />
+                        <Input size="sm" type="text" value={this.state.contact} onChange={this.onContactInputChange.bind(this)} placeholder="New contact" />
                     </FormGroup>
-                    <Button size="sm" onClick={this.addContact}>Add Conatct</Button>
+                    <Button size="sm" onClick={this.addContact.bind(this)}>Add Conatct</Button>
                 </Form>
             </div>
         )
     }
 
 }
-
 
 export default Toolbox;

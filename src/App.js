@@ -1,25 +1,20 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Container, Row, Col, Card, CardHeader, CardBlock } from 'reactstrap';
 import './styles/app.css';
 import List from './List.js';
 
-
-
-
 class App extends Component {
-
-  constructor(props) {
-    super(props)
-    this.state = {
-      contacts: this.props
-    }
+  static childContextTypes = {
+    addContact: PropTypes.func
+  }
+  getChildContext() {
+    const { addContact } = this.props;
+    return {addContact}
   }
 
-
   render() {
-    const { contacts } = this.state.contacts;
-    console.log(contacts);
-
+    const { contacts } = this.props;
 
     return (
       <Container>

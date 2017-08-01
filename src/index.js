@@ -33,4 +33,27 @@ const contacts = [
     {id: 8, name: "Ori", type: "Contact"},
 ];
 
-ReactDOM.render(<App contacts={contacts} />, document.getElementById('root'));
+let _id = 100;
+
+function _addContact(current, newContact, id) {
+     current.forEach(item => {
+        if (item.id === id) {
+            item.contacts.push({
+                id: _id + 1,
+                name: newContact,
+                type: "Contact",
+            })
+            _id = _id + 1;
+            ReactDOM.render(<App contacts={contacts} addContact={addContact} />, document.getElementById('root'));
+
+        } else if (item.contacts) {
+            _addContact(item.contacts, newContact, id)
+        }
+    })
+}
+
+function addContact (newContact, id) {
+    _addContact(contacts, newContact, id)
+}
+
+ReactDOM.render(<App contacts={contacts} addContact={addContact} />, document.getElementById('root'));

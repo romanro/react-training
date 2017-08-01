@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import List from'./List.js';
 import Contact from'./Contact.js';
+import Toolbox from './Toolbox.js';
+
 import './styles/group.css';
 
 
@@ -23,7 +25,9 @@ class Group extends Component {
     return (
       <div>
         <div onClick={this.handleClick.bind(this)} className='group-header' ><Contact item={group} /></div>
-        {showContacts ? <List items={group.contacts} /> : null}
+        {showContacts ? <div><List items={group.contacts} /><Toolbox groupId={group.id} /></div> : null}
+        
+
       </div>
     );
   }

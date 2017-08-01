@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Contact from './Contact';
 import Group from './Group';
-import Toolbox from './Toolbox.js';
 import './styles/list.css'
 
 const renderSingle = function (item, index) {
@@ -31,7 +30,6 @@ class List extends Component {
     return (
       <div className='list'>
         {nodes}
-        <Toolbox />
       </div>
     );
   }
